@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Task Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+</head>
+
+<body>
+
+<div class="main-card">
+
+    <!-- Header Banner -->
+    <div class="top-banner">
+        <div class="banner-overlay">
+            <h2>Task Manager</h2>
+            <p>Organize your day with style</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-links">
+        <button class="active">Tasks</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-body">
+
+        <!-- LEFT: Tasks -->
+        <div class="task-column">
+
+            <div class="box pending-box">
+                <h3>Pending Tasks</h3>
+
+                    <ul id="pendingTasks">
+    
+                    <li>Design user interface</li>
+                    <li>Update stylesheet code</li>
+                    <li>Test mobile responsiveness</li>
+                </ul>
+            </div>
+
+            <div class="box done-box">
+                <h3>Completed</h3>
+
+                <ul id="completedTasks">
+                
+                    <li>Project setup and structure</li>
+                    <li>Initial concept review</li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <!-- CENTER: Counter -->
+        <div class="box counter-box">
+
+            <h3>Quick Counter & Math</h3>
+
+            <div class="counter-display" id="counterDisplay">
+                0
+            </div>
+
+            <div class="counter-input-row">
+                <input
+                    type="number"
+                    id="numInput"
+                    placeholder="Enter number..."
+                >
+            </div>
+
+            <div class="counter-btns">
+
+                <button onclick="mathOp('+')">+</button>
+
+                <button onclick="mathOp('-')">-</button>
+
+                <button onclick="mathOp('*')">×</button>
+
+                <button onclick="mathOp('/')">÷</button>
+
+                <button
+                    class="equal-btn"
+                    onclick="showResult()"
+                >
+                    =
+                </button>
+
+            </div>
+
+            <button
+                class="reset-btn"
+                onclick="resetAll()"
+            >
+                Reset
+            </button>
+
+        </div>
+
+
+        <!-- RIGHT: Image + Form -->
+        <div class="image-column">
+
+            <!-- Picture -->
+            <div class="pic-box">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx9cs2y6NfmebasFEgjKw0KWozsbR5i3jx2ZGsmn2aiQ&s=10"
+                    alt="Workspace Team"
+                >
+
+                <span class="img-caption">
+                    Collaborative Workspace
+                </span>
+
+            </div>
+
+
+            <!-- Add Task Form -->
+            <div class="box form-box">
+
+                <h3>Add New Task</h3>
+
+                <div class="input-group">
+
+                    <label>Task Name</label>
+
+                        <input
+    type="text"
+    id="taskInput"
+    placeholder="Enter task title..."
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>Category</label>
+
+                        <select>
+                            <option>Work</option>
+                            <option>Personal</option>
+                            <option>Study</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Priority</label>
+
+                        <select>
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Due Date</label>
+
+                    <input type="date">
+
+                </div>
+
+
+                <button class="save-btn" id="saveTask">
+    Save Task
+</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+
+        <p>
+            Task Manager App &bull; 2026
+        </p>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
