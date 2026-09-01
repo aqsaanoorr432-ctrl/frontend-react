@@ -1,126 +1,63 @@
-// =========================
-// TASK MANAGER
-// =========================
+let total = 0;
+let savedOp = '';
+let display = document.getElementById('counterDisplay');
+let input = document.getElementById('numInput');
 
-// Get HTML elements
-let taskInput = document.getElementById("taskInput");
-let saveTask = document.getElementById("saveTask");
-let pendingTasks = document.getElementById("pendingTasks");
-let completedTasks = document.getElementById("completedTasks");
-
-
-// Add Task
-saveTask.addEventListener("click", function () {
-
-    let task = taskInput.value;
-
-    if (task === "") {
-        alert("Please enter a task");
+// Operation (+, -, *, /) select karne par
+function mathOp(op) {
+    let val = parseFloat(input.value);
+    
+    if (isNaN(val)) {
+        alert("Please enter a number first!");
         return;
     }
 
-    // Create new list item
-    let li = document.createElement("li");
-
-    li.innerText = task;
-
-    // Add Delete button
-    let deleteButton = document.createElement("button");
-
-    deleteButton.innerText = "Delete";
-
-    deleteButton.style.marginLeft = "10px";
-
-    // Delete task
-    deleteButton.addEventListener("click", function () {
-        li.remove();
-    });
-
-    // Add button inside task
-    li.appendChild(deleteButton);
-
-    // Add task to pending
-    pendingTasks.appendChild(li);
-
-    // Clear input
-    taskInput.value = "";
-
-});
-
-
-// =========================
-// COMPLETE TASK
-// =========================
-
-pendingTasks.addEventListener("click", function (event) {
-
-    if (event.target.tagName === "LI") {
-
-        completedTasks.appendChild(event.target);
-
+    if (savedOp === '' && total === 0 && display.textContent === '0') {
+        total = val;
+    } else {
+        calculate(val);
     }
 
-});
+    savedOp = op;
+    display.textContent = total;
+    input.value = '';
+}
 
-
-// =========================
-// CALCULATOR
-// =========================
-
-let counter = 0;
-
-
-// Math operation
-function mathOp(operator) {
-
-    let number = Number(document.getElementById("numInput").value);
-
-    if (isNaN(number)) {
-        alert("Please enter a number");
+// Equal (=) click 
+function showResult() {
+    let val = parseFloat(input.value);
+    
+    if (isNaN(val)) {
+        alert("Please enter a number to calculate!");
         return;
     }
 
-    if (operator === "+") {
-        counter = counter + number;
+    if (savedOp !== '') {
+        calculate(val);
+        display.textContent = total;
+        input.value = '';
+        savedOp = '';
     }
+}
 
-    if (operator === "-") {
-        counter = counter - number;
-    }
-
-    if (operator === "*") {
-        counter = counter * number;
-    }
-
-    if (operator === "/") {
-
-        if (number === 0) {
-            alert("Cannot divide by zero");
+// Calculation function
+function calculate(val) {
+    if (savedOp === '+') total += val;
+    else if (savedOp === '-') total -= val;
+    else if (savedOp === '*') total *= val;
+    else if (savedOp === '/') {
+        if (val === 0) {
+            alert("Cannot divide by zero!");
             return;
         }
-
-        counter = counter / number;
+        total /= val;
     }
-
-    document.getElementById("counterDisplay").innerText = counter;
 }
 
-
-// Equal button
-function showResult() {
-
-    document.getElementById("counterDisplay").innerText = counter;
-
-}
-
-
-// Reset calculator
+// Reset karne ke liye
 function resetAll() {
-
-    counter = 0;
-
-    document.getElementById("counterDisplay").innerText = 0;
-
-    document.getElementById("numInput").value = "";
-
+    total = 0;
+    savedOp = '';
+    display.textContent = '0';
+    input.value = '';
 }
